@@ -1,0 +1,9 @@
+{
+  "name": "Emoji",
+  "alias": ["emoji", "emojis", "emotes", "reactions", "reaction", "emojiOne"],
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+  "github": {
+    "silent": true
+  }
+}
