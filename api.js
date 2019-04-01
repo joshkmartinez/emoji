@@ -11,10 +11,11 @@ app.use(function(req, res, next) {
   next()
 })
 //order matters
+/*
 api.get('/list', (req, res) => {
   res.sendFile('./emoji.json', { root: __dirname })
-})
-
+})*/
+/*
 api.get('/:emoji', (req, res) => {
   const emoji = req.params.emoji
 
@@ -29,7 +30,7 @@ api.get('/:emoji', (req, res) => {
   let filePath = `./node_modules/emojione/assets/png/${found}.png`
 
   return res.sendFile(filePath, { root: __dirname })
-})
+})*/
 api.get('/', (req, res) => {
   res.send(
     `
