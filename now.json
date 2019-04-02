@@ -1,6 +1,15 @@
 {
   "name": "Emoji",
-  "alias": ["emoji", "emojis", "emotes", "reactions", "reaction"],
+  "alias": [
+    "emoji",
+    "emojis",
+    "emotes",
+    "reactions",
+    "reaction",
+    "emojione",
+    "joypixels",
+    "joypixel"
+  ],
   "version": 2,
   "builds": [{ "src": "api.js", "use": "@now/node-server" }],
   "routes": [{ "src": "/(.*)", "dest": "api.js" }],

@@ -1,6 +1,6 @@
 var express = require('express')
 var app = express()
-const Emoji = require('emojione')
+var emoji = require('node-emoji')
 const api = express.Router()
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -11,26 +11,16 @@ app.use(function(req, res, next) {
   next()
 })
 //order matters
-/*
-api.get('/list', (req, res) => {
+
+api.get(['/list', '/l'], (req, res) => {
   res.sendFile('./emoji.json', { root: __dirname })
-})*/
-/*
+})
+api.get(['/r', '/random'], (req, res) => {
+  res.send(emoji.random().emoji)
+})
 api.get('/:emoji', (req, res) => {
-  const emoji = req.params.emoji
-
-  const image = Emoji.shortnameToImage(`:${emoji}:`)
-  const re = /png\/(.*).png/
-  try {
-    image.match(re)[1]
-  } catch (e) {
-    return res.send('emoji not found')
-  }
-  const found = image.match(re)[1]
-  let filePath = `./node_modules/emojione/assets/png/${found}.png`
-
-  return res.sendFile(filePath, { root: __dirname })
-})*/
+  res.send(emoji.get(req.params.emoji))
+})
 api.get('/', (req, res) => {
   res.send(
     `
