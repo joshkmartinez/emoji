@@ -10,23 +10,27 @@ app.use(function(req, res, next) {
   )
   next()
 })
-//order matters
 
+//order matters
+/*
 api.get(['/list', '/l'], (req, res) => {
   res.sendFile('./emoji.json', { root: __dirname })
 })
+*/
 api.get(['/r', '/random'], (req, res) => {
   res.send(emoji.random().emoji)
 })
+
 api.get('/:emoji', (req, res) => {
   res.send(emoji.get(req.params.emoji))
 })
+
 api.get('/', (req, res) => {
   res.send(
     `
     Endpoints:
     GET /list
-    GET /:emojiName
+    GET /emojiName
     
     e.g. GET /smirk
     github.com/joshkmartinez/emoji
