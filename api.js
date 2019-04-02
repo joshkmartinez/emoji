@@ -12,13 +12,23 @@ app.use(function(req, res, next) {
 })
 
 //order matters
-/*
+
 api.get(['/list', '/l'], (req, res) => {
-  res.sendFile('./emoji.json', { root: __dirname })
+  res.writeHead(302, {
+    Location: 'https://raw.githubusercontent.com/joshkmartinez/emoji/master/emoji.json'
+  })
+  res.end()
 })
-*/
+
 api.get(['/r', '/random'], (req, res) => {
   res.send(emoji.random().emoji)
+})
+
+api.get('/rick', (req, res) => {
+  res.writeHead(302, {
+    Location: 'https://rickroll.now.sh'
+  })
+  res.end()
 })
 
 api.get('/:emoji', (req, res) => {
@@ -31,6 +41,8 @@ api.get('/', (req, res) => {
     Endpoints:
     GET /list
     GET /emojiName
+    GET /random
+    GET /rick
     
     e.g. GET /smirk
     github.com/joshkmartinez/emoji
