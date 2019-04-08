@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express()
+const PORT = process.env.PORT || 3000
 var emoji = require('node-emoji')
 const api = express.Router()
 app.use(function(req, res, next) {
@@ -15,7 +16,8 @@ app.use(function(req, res, next) {
 
 api.get(['/list', '/l'], (req, res) => {
   res.writeHead(302, {
-    Location: 'https://raw.githubusercontent.com/joshkmartinez/emoji/master/emoji.json'
+    Location:
+      'https://raw.githubusercontent.com/joshkmartinez/emoji/master/emoji.json'
   })
   res.end()
 })
@@ -50,6 +52,6 @@ api.get('/', (req, res) => {
   )
 })
 app.use('/', api)
-app.listen(3000, () => {
+app.listen(PORT, () => {
   //console.log('Server running on port 3000')
 })
