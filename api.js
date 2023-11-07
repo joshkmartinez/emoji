@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 const PORT = process.env.PORT || 3000
 var emoji = require('node-emoji')
+const emojiFile = require('./emoji.json')
 const api = express.Router()
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -15,14 +16,11 @@ app.use(function(req, res, next) {
 //order matters
 
 api.get(['/list', '/l'], (req, res) => {
-  res.writeHead(302, {
-    Location:
-      'https://raw.githubusercontent.com/joshkmartinez/emoji/master/emoji.json'
-  })
-  res.end()
+  res.json(emojiFile)
 })
 
 api.get(['/r', '/random'], (req, res) => {
+  res.header('Content-Type', 'text/plain')
   res.send(emoji.random().emoji)
 })
 
@@ -34,6 +32,7 @@ api.get('/rick', (req, res) => {
 })
 
 api.get('/:emoji', (req, res) => {
+  res.header('Content-Type', 'text/plain')
   res.send(emoji.get(req.params.emoji))
 })
 
